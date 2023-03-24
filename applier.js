@@ -6,10 +6,40 @@ let fishes = (arg)=>{
     return document.querySelectorAll(arg)
 
 }
+function scrollTo(element, to, duration) {
+    const start = element.scrollTop;
+    const change = to - start;
+    const increment = 20;
+    let currentTime = 0;
+  
+    const animateScroll = function() {
+      currentTime += increment;
+      const val = Math.easeInOutQuad(currentTime, start, change, duration);
+      element.scrollTop = val;
+      if(currentTime < duration) {
+        requestAnimationFrame(animateScroll);
+      }
+    };
+  
+    Math.easeInOutQuad = function(t, b, c, d) {
+      t /= d/2;
+      if (t < 1) {
+        return c/2*t*t + b;
+      }
+      t--;
+      return -c/2 * (t*(t-2) - 1) + b;
+    };
+  
+    requestAnimationFrame(animateScroll);
+  }
 
-let scrollableResults = fish('[class="jobs-search-results-list]')
+let element = $('[class="scaffold-layout__list"]').children[1]
 
-let joblinks = fishes('[class="disabled ember-view job-card-container__link job-card-list__title"]')
+let elementHeight = element.scrollHeight - element.clientHeight
+
+scrollTo(element, hi, 5000);
+await wait(7)
+let jobLinks = fishes('[class="disabled ember-view job-card-container__link job-card-list__title"]')
 for(let link of jobLinks){
     // click the link
     link.click()
@@ -241,7 +271,10 @@ for(let link of jobLinks){
             
            //     // }
             while(weStillHere){
-               let heading = document.querySelector('[class="t-16 t-bold"]').textContent.replace(/\n/g ,"").trim().toLowerCase()?document.querySelector('[class="t-16 t-bold"]').textContent.replace(/\n/g ,"").trim().toLowerCase():'';
+               let head = document.querySelector('[class="t-16 t-bold"]'); 
+               if(head){
+               let heading = head.textContent.replace(/\n/g ,"").trim().toLowerCase()?document.querySelector('[class="t-16 t-bold"]').textContent.replace(/\n/g ,"").trim().toLowerCase():'';
+               if(heading){
                switch(heading){
                 case 'contact info':
                     let inpElements = newDoc.querySelectorAll('input,select,textarea');
@@ -250,7 +283,7 @@ for(let link of jobLinks){
                             if(!element.value){
                                 if(element.labels[0].textContent.trim().toLowerCase() == 'summary'){
                                     element.value = 'skilled and dedicated Javascript developer, With a deep understanding of the language and a passion for creating efficient, elegant code, and a strong commitment to staying up-to-date with the latest industry trends and technologies, always looking for new ways to push the boundaries and exceed expectations. Whether working independently or as part of a team';
-                                    await wait(2)
+                                    await wait(.7)
                                 }
                             }
 
@@ -263,7 +296,7 @@ for(let link of jobLinks){
                         let cover = newDoc.querySelector('textarea');
                         if(cover){
                         cover.value = `Dear Hiring Manager at ${company}, \n \n I am writing to apply for the ${jobRole} position currently available at your esteemed company. As a highly motivated and experienced web developer, I am confident in my ability to make a valuable contribution to your team. \n I'm familiar with client-side and server-side application technologies and serverless computing services \nI also have a solid understanding of the programming paradigms, design patterns, algorithms and data structures. \n with excellent problem solving skills to come up with functional, efferent and clean solutions  for uncommon problems ` ;
-                        await wait(4)
+                        await wait(.7)
                         }
                         break;
                     default:
@@ -272,6 +305,7 @@ for(let link of jobLinks){
 
                }
 
+            }}
             //    get the buttons
             let nextbutton=newDoc.querySelector('[aria-label="Continue to next step"]')
             if(nextbutton){
