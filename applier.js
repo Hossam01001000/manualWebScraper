@@ -7,6 +7,8 @@ let fishes = (arg)=>{
 
 }
 
+let scrollableResults = fish('[class="jobs-search-results-list]')
+
 let joblinks = fishes('[class="disabled ember-view job-card-container__link job-card-list__title"]')
 for(let link of jobLinks){
     // click the link
@@ -261,7 +263,7 @@ for(let link of jobLinks){
                         let cover = newDoc.querySelector('textarea');
                         if(cover){
                         cover.value = `Dear Hiring Manager at ${company}, \n \n I am writing to apply for the ${jobRole} position currently available at your esteemed company. As a highly motivated and experienced web developer, I am confident in my ability to make a valuable contribution to your team. \n I'm familiar with client-side and server-side application technologies and serverless computing services \nI also have a solid understanding of the programming paradigms, design patterns, algorithms and data structures. \n with excellent problem solving skills to come up with functional, efferent and clean solutions  for uncommon problems ` ;
-                        await wait(2)
+                        await wait(4)
                         }
                         break;
                     default:
