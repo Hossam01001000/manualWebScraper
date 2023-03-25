@@ -271,9 +271,10 @@ for(let link of jobLinks){
             
            //     // }
             while(weStillHere){
-               let head = document.querySelector('[class="t-16 t-bold"]'); 
+            //    let head = document.querySelector('[class="t-16 t-bold"]'); 
+               let head = newDoc.querySelector('.t-bold'); 
                if(head){
-               let heading = head.textContent.replace(/\n/g ,"").trim().toLowerCase()?document.querySelector('[class="t-16 t-bold"]').textContent.replace(/\n/g ,"").trim().toLowerCase():'';
+               let heading = head.textContent.replace(/\n/g ,"").trim().toLowerCase();
                if(heading){
                switch(heading){
                 case 'contact info':
@@ -291,12 +292,49 @@ for(let link of jobLinks){
                     }
                     break;
                     case 'home address':
+                        let homeAddress = newDoc.querySelectorAll('input,select,textarea');
+                        if(homeAddress.length){
+                            for(let element of homeAddress){
+                                if(!element.value){
+                                    let label = element.labels[0].textContent.trim().toLowerCase();
+                                    
+                                    let work = {city:'Cairo, Egypt'}
+
+                                    if(label){
+                                        element.value = work[label];
+                                    }
+                                }
+
+                            }
+                        }
                         break;
                     case 'resume':
                         let cover = newDoc.querySelector('textarea');
                         if(cover){
                         cover.value = `Dear Hiring Manager at ${company}, \n \n I am writing to apply for the ${jobRole} position currently available at your esteemed company. As a highly motivated and experienced web developer, I am confident in my ability to make a valuable contribution to your team. \n I'm familiar with client-side and server-side application technologies and serverless computing services \nI also have a solid understanding of the programming paradigms, design patterns, algorithms and data structures. \n with excellent problem solving skills to come up with functional, efferent and clean solutions  for uncommon problems ` ;
                         await wait(.7)
+                        }
+                        break;
+                    case 'work experience':
+                        let workElements = newDoc.querySelectorAll('input,select,textarea');
+                        if(workElements.length){
+                            let i = 0
+                            let values = ['front-end engineer' , 'crimson rose','11','2021','1','2022','properties trading','I built the front-end side based on the design made by the company design team , following the web accsessability guidelines and using SEO and performance optemization techniques to provide a better user experince']
+                            for(let element of workElements){
+                                if(element.type==='checkbox'){
+                                    continue;
+                                    await wait(1.2)
+                                }
+                                else{
+                                    element.focus()
+                                    await wait(1)
+                                    element.value =values[i];
+                                    i++; 
+                                    await wait(.7)
+                                }
+
+
+                            }
                         }
                         break;
                     default:
