@@ -6,6 +6,8 @@ let fishes = (arg)=>{
     return document.querySelectorAll(arg)
 
 }
+let ul = fish('.artdeco-pagination__pages artdeco-pagination__pages--number'.split(' ').join('.'))
+let pagesNum = Number(ul.lastElementChild.getAttribute('data-test-pagination-page-btn'))
 for(let i=0; i<pagesNum;i++){
 
     // code goes here before advancing to the next page
@@ -36,7 +38,7 @@ for(let i=0; i<pagesNum;i++){
         requestAnimationFrame(animateScroll);
       }
     
-    let element = $('[class="scaffold-layout__list"]').children[1]
+    let element = fish('[class="scaffold-layout__list"]').children[1]
     
     let elementHeight = element.scrollHeight - element.clientHeight
     
@@ -59,220 +61,7 @@ for(let i=0; i<pagesNum;i++){
            let newDoc = fish('.artdeco-modal-overlay artdeco-modal-overlay--layer-default artdeco-modal-overlay--is-top-layer ember-view'.split(' ').join('.')) 
            if(newDoc){
                let weStillHere = true
-               // //    while(weStillHere){
-            //    let inpElements = newDoc.querySelectorAll('input,select,textarea');
-            //    if(inpElements.length){
-            //        let file = 0
-            //        let redFlags = 0
-            //        for(let element of inpElements){
-            //            let itsId = element.id ?element.id:'';
-            //            let itslabel = element.labels[0] 
-            //            // itsId ?  newDoc.querySelector(`[for="${itsId}"]`) :'';
-            //            // represents the element object will be checked and pushed to the final results array
-            //            let it ={}
-            //            // red flags will be increased at any case of unsatsfyible requirement and will be checked for at yhe end of the loop if its not 0 it will break
-                       
-                       
-            //            switch (element.tagName) {
-            //                case 'INPUT':
-            //                    switch (element.type) {
-            //                        case 'text':
-            //                            if(itslabel)
-            //                            {
-                                           
-            //                                if(element.value){
-            //                                    it[`${itslabel.textContent}`] = element.value
-            //                                }
-            //                                else {
-            //                                    it[`${itslabel.textContent}`] = 'default'
-            //                                    element.value = 'default'
-            //                                }
-                                           
-            //                            }
-            //                            if(!element.value){
-            //                                element.value='default'
-            //                            }
-            //                            break;
-            //                        case 'file':
-            //                                if(itslabel)
-            //                                {
-                                               
-            //                                    it[`${itslabel.textContent}`] = 'file'
-            //                                    if(!file >0){
-            //                                       if(document.querySelector('[aria-label="Choose Resume"]')){
-            //                                        document.querySelector('[aria-label="Choose Resume"]').click()
-            //                                        file++;
-            //                                       }
-            //                                    }
-                                               
-            //                                }
-            //                                else{
-            //                                    if(!file >0){
-            //                                        if(document.querySelector('[aria-label="Choose Resume"]')){
-            //                                            document.querySelector('[aria-label="Choose Resume"]').click()
-            //                                            file++;
-            //                                           }
-            //                                    }
-                                              
-    
-            //                                }
-                                           
-                                           
-            //                            break; 
-            //                        case 'checkbox':
-            //                                if(itslabel)
-            //                                {
-                                               
-            //                                    it[`${itslabel.textContent}`] = 'checkbox'
-                                               
-                                               
-            //                                }
-            //                                if(!element.checked){element.click()}
-                                           
-                                           
-            //                            break;
-            //                        case 'radio':
-            //                                // if(itslabel)
-            //                                // {
-                                               
-            //                                //     it[`${itslabel.textContent}`] = 'checkbox'
-                                               
-                                               
-            //                                // }
-            //                                if(!element.checked){element.click()}
-                                           
-                                           
-            //                            break;  
-            //                        case 'number':
-            //                            if(itslabel){
-            //                                if(element.value){
-            //                                it[`${itslabel.textContent}`] = element.value
-            //                                }
-            //                                else{
-            //                                    it[`${itslabel.textContent}`] = 148
-            //                                    element.value = 148
-            //                                }
-            //                            }
-            //                            if(!element.value){
-            //                                element.value = 148
-            //                            }
-                                       
-                                       
-    
-    
-    
-    
-    
-                               
-            //                        default:
-            //                            redFlags ++;
-            //                            break;
-                                       
-            //                    }
-                               
-                               
-            //                    break;
-            //                case 'SELECT':
-            //                    let options = element.querySelectorAll('option')
-            //                    if(itslabel){
-            //                        if(element.value != options[0].value){
-            //                            it[`${itslabel.textContent}`] = element.value
-            //                        }
-            //                        else{
-            //                            element.value = element.querySelectorAll('option')[1].value
-            //                            it[`${itslabel.textContent}`] = element.value
-            //                        }
-            //                    }
-            //                    else{
-            //                        if(element.value != options[0].value){
-                                       
-            //                        }
-            //                        else{
-            //                            element.value = element.querySelectorAll('option')[1].value
-                                       
-            //                        }
-            //                    }
-            //                    break;
-            //                case 'TEXTAREA':
-            //                    if(itslabel){
-            //                        it[`${itslabel.textContent}`] = 'this is a textarea'
-    
-            //                    }
-            //                    if(element.required){
-            //                        element.value = 'this is a text area'
-            //                    }
-            //                    break;
-                       
-            //                default:
-            //                    redFlags ++;
-            //                    break;
-            //            }
-    
-            //            if(Object.keys(it).length){
-            //                finalResults.push(it)
-            //            }
-            //        }
-            //        // after looping through the elments
-            //        if(redFlags > 0){
-            //            let exit = newDoc.querySelector('[aria-label="Dismiss"]')
-            //            exit.click()
-            //            await wait(.7)
-            //            let discard = document.querySelector('[data-control-name="discard_application_confirm_btn"]')
-            //            discard.click()
-            //            await wait(.7)
-            //            weStillHere = false 
-    
-            //        }
-            //        let nextbutton=newDoc.querySelector('[aria-label="Continue to next step"]')
-            //        if(nextbutton){
-            //            let current = newDoc.querySelector('[class="display-flex ph5 pv2"]').innerHTML
-            //            try {nextbutton.click()
-            //            await wait(.8)
-            //            if (current == newDoc.querySelector('[class="display-flex ph5 pv2"]').innerHTML){
-            //             let exit = newDoc.querySelector('[aria-label="Dismiss"]')
-            //             exit.click()
-            //             await wait(.7)
-            //             let discard = document.querySelector('[data-control-name="discard_application_confirm_btn"]')
-            //             discard.click()
-            //             await wait(.7)
-            //              weStillHere = false
-    
-            //            }
-            //        }
-            //        catch{
-            //            let exit = newDoc.querySelector('[aria-label="Dismiss"]')
-            //             exit.click()
-            //             await wait(.7)
-            //             let discard = document.querySelector('[data-control-name="discard_application_confirm_btn"]')
-            //             discard.click()
-            //             weStillHere = false
-    
-            //        }
-            //        }
-            //        else{
-            //            let exit = newDoc.querySelector('[aria-label="Dismiss"]')
-            //             exit.click()
-            //             await wait(.7)
-            //             let discard = document.querySelector('[data-control-name="discard_application_confirm_btn"]')
-            //             discard.click()
-            //             weStillHere = false
-    
-    
-            //        }
-                   
-            //    }
-            //    else{
-            //        let exit = newDoc.querySelector('[aria-label="Dismiss"]')
-            //        exit.click()
-            //        await wait(.7)
-            //        let discard = document.querySelector('[data-control-name="discard_application_confirm_btn"]')
-            //        discard.click()
-            //        await wait(.7)
-            //        weStillHere = false
-                   
-            //    }
-                
-               //     // }
+         
                 while(weStillHere){
                 //    let head = document.querySelector('[class="t-16 t-bold"]'); 
                    let head = newDoc.querySelector('.t-bold'); 
@@ -299,12 +88,20 @@ for(let i=0; i<pagesNum;i++){
                             if(homeAddress.length){
                                 for(let element of homeAddress){
                                     if(!element.value){
-                                        let label = element.labels[0].textContent.trim().toLowerCase();
-                                        
-                                        let work = {city:'Cairo, Egypt'}
-    
-                                        if(label){
-                                            element.value = work[label];
+                                        let label = element.labels[0].textContent.replace(/\n/g,"").trim().toLowerCase();
+                                        if(label == 'city'){
+                                            element.value = 'Cairo'
+                                            await wait(1.5);
+                                            let event = new MouseEvent('input', {
+                                                bubbles: true,
+                                                cancelable: true,
+                                                view: window
+                                              });
+                                            element.dispatchEvent(event);
+                                            await wait(1.2)
+                                            newDoc.querySelector('[class="search-typeahead-v2__hit search-typeahead-v2__hit--autocomplete"]').click()
+                                            await wait(.8)
+
                                         }
                                     }
     
@@ -315,32 +112,52 @@ for(let i=0; i<pagesNum;i++){
                             let cover = newDoc.querySelector('textarea');
                             if(cover){
                             cover.value = `Dear Hiring Manager at ${company}, \n \n I am writing to apply for the ${jobRole} position currently available at your esteemed company. As a highly motivated and experienced web developer, I am confident in my ability to make a valuable contribution to your team. \n I'm familiar with client-side and server-side application technologies and serverless computing services \nI also have a solid understanding of the programming paradigms, design patterns, algorithms and data structures. \n with excellent problem solving skills to come up with functional, efferent and clean solutions  for uncommon problems ` ;
-                            await wait(.7)
+                            await wait(1)
                             }
                             break;
                         case 'work experience':
-                            let workElements = newDoc.querySelectorAll('input,select,textarea');
-                            if(workElements.length){
-                                let i = 0
-                                let values = ['frontend engineer' , 'crimson rose','11','2021','1','2022','properties trading','I built the frontend side based on the design made by the company design team , following the web accsessability guidelines and using SEO and performance optemization techniques to provide a better user experince']
-                                for(let element of workElements){
-                                    if(element.type==='checkbox'){
-                                        continue;
-                                        await wait(1.2)
-                                    }
-                                    else{
-                                        element.focus()
-                                        await wait(1)
-                                        element.value =values[i];
-                                        i++; 
-                                        await wait(.7)
-                                    }
+                            // let workElements = newDoc.querySelectorAll('input,select,textarea');
+                            // if(workElements.length){
+                            //     let i = 0
+                            //     let values = ['frontend engineer' , 'crimson rose','11','2021','1','2022','properties trading','I built the frontend side based on the design made by the company design team , following the web accsessability guidelines and using SEO and performance optemization techniques to provide a better user experince']
+                            //     for(let element of workElements){
+                            //         if(element.type==='checkbox'){
+                            //             continue;
+                            //             await wait(1.2)
+                            //         }
+                            //         else{
+                            //             element.focus()
+                            //             await wait(1)
+                            //             element.value =values[i];
+                            //             i++; 
+                            //             await wait(.7)
+                            //         }
     
     
-                                }
-                            }
+                            //     }
+                            // }
                             break;
                         default:
+                            let inps = newDoc.querySelectorAll('input');
+                            for (let inp of inps){
+                                let type = inp.type;
+                                switch(type){
+
+                                    case 'text':
+                                        let matches=['salary'];
+                                        let mss = [46000]
+                                        let lab = inp.labels[0].textContent.replace(/\n/g ,"").trim().toLowerCase()
+                                        for (let i=0;i<matches.length;i++){
+                                            let reg = new RegExp("\\b"+matches[i]+"\\b","i")
+                                            let contains = reg.test(lab);
+                                            if(contains == true){
+                                                inp.value = mss[i]
+                                                break;
+                                            }
+                                        }
+                                        
+                                }
+                            }
                             break;
     
     
