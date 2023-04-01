@@ -7,3 +7,24 @@ I'm familiar with client-side and server-side application technologies and serve
 
 I also have a solid understanding of the programming paradigms, design patterns, algorithms and data structures.
 with excellent problem solving skills to come up with functional, efferent and clean solutions  for uncommon problems `
+
+let str = `Yes
+No
+OK
+I don't know
+Maybe
+Thank you
+Sorry
+Please
+Excuse me
+Can you repeat that?
+I'm not sure
+That's not possible
+Let me think about it
+I'll try
+Absolutely
+Definitely not
+Of course
+Not right now
+That's a good idea
+I understand.`.split('\n')
