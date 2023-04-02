@@ -1,46 +1,47 @@
-let wait=(delay)=>new Promise(resolve=>setTimeout(()=>resolve(),delay*1000))
-let fish=(arg)=>{
-    return document.querySelector(arg)
-}
-let fishes = (arg)=>{
-    return document.querySelectorAll(arg)
+let jam = async()=>{
+    let wait=(delay)=>new Promise(resolve=>setTimeout(()=>resolve(),delay*1000))
+    let fish=(arg)=>{
+        return document.querySelector(arg)
+    }
+    let fishes = (arg)=>{
+    return document.querySelectorAll(arg);
+    }
 
-};
-
-function scrollTo(element, to, duration) {
-    const start = element.scrollTop;
-    const change = to - start;
-    const increment = 20;
-    let currentTime = 0;
-  
-    const animateScroll = function() {
-      currentTime += increment;
-      const val = Math.easeInOutQuad(currentTime, start, change, duration);
-      element.scrollTop = val;
-      if(currentTime < duration) {
+    function scrollTo(element, to, duration) {
+        const start = element.scrollTop;
+        const change = to - start;
+        const increment = 20;
+        let currentTime = 0;
+      
+        const animateScroll = function() {
+          currentTime += increment;
+          const val = Math.easeInOutQuad(currentTime, start, change, duration);
+          element.scrollTop = val;
+          if(currentTime < duration) {
+            requestAnimationFrame(animateScroll);
+          }
+        };
+      
+        Math.easeInOutQuad = function(t, b, c, d) {
+          t /= d/2;
+          if (t < 1) {
+            return c/2*t*t + b;
+          }
+          t--;
+          return -c/2 * (t*(t-2) - 1) + b;
+        };
+      
         requestAnimationFrame(animateScroll);
-      }
-    };
-  
-    Math.easeInOutQuad = function(t, b, c, d) {
-      t /= d/2;
-      if (t < 1) {
-        return c/2*t*t + b;
-      }
-      t--;
-      return -c/2 * (t*(t-2) - 1) + b;
-    };
-  
-    requestAnimationFrame(animateScroll);
-  }
+    }
+    let element = fish('[class="scaffold-layout__list"]').children[1];
+    
+    let elementHeight = element.scrollHeight - element.clientHeight
+    scrollTo(element , 0 , 3000);
+    await wait(4)
+    scrollTo(element, elementHeight, 5000);
+    await wait(7);
 
-let element = fish('[class="scaffold-layout__list"]').children[1]
-
-let elementHeight = element.scrollHeight - element.clientHeight
-
-scrollTo(element, elementHeight, 5000);
-await wait(7);
-let jobLinks = fishes('[class="disabled ember-view job-card-container__link job-card-list__title"]')
+    let jobLinks = fishes('[class="disabled ember-view job-card-container__link job-card-list__title"]')
     for(let link of jobLinks){
         // click the link
         link.click()
@@ -70,9 +71,15 @@ let jobLinks = fishes('[class="disabled ember-view job-card-container__link job-
                         if(inpElements.length){
                             for(let element of inpElements){
                                 if(!element.value){
+                                    let event = new MouseEvent('input', {
+                                        bubbles: true,
+                                        cancelable: true,
+                                        view: window
+                                      });
                                     if(element.labels[0].textContent.trim().toLowerCase() == 'summary'){
                                         element.value = 'skilled and dedicated Javascript developer, With a deep understanding of the language and a passion for creating efficient, elegant code, and a strong commitment to staying up-to-date with the latest industry trends and technologies, always looking for new ways to push the boundaries and exceed expectations. Whether working independently or as part of a team';
-                                        await wait(.7)
+                                        await wait(.7);
+                                        element.dispatchEvent(event)
                                     }
                                 }
     
@@ -87,14 +94,14 @@ let jobLinks = fishes('[class="disabled ember-view job-card-container__link job-
                                         let label = element.labels[0].textContent.replace(/\n/g,"").trim().toLowerCase();
                                         if(label == 'city'){
                                             element.value = 'Cairo'
-                                            await wait(1.5);
+                                            await wait(.6);
                                             let event = new MouseEvent('input', {
                                                 bubbles: true,
                                                 cancelable: true,
                                                 view: window
                                               });
                                             element.dispatchEvent(event);
-                                            await wait(1.2)
+                                            await wait(1)
                                             newDoc.querySelector('[class="search-typeahead-v2__hit search-typeahead-v2__hit--autocomplete"]').click()
                                             await wait(.8)
 
@@ -105,12 +112,33 @@ let jobLinks = fishes('[class="disabled ember-view job-card-container__link job-
                             }
                             break;
                         case 'resume':
-                            let cover = newDoc.querySelector('textarea');
+                            var cover = newDoc.querySelector('textarea');
                             if(cover){
                             cover.value = `Dear Hiring Manager, \n \nAs someone deeply passionate about creating digital experiences that make a difference in people's lives. \n \nMy journey started as a personal interest that quickly became a calling. I have always been fascinated by the ability of technology to connect people from different parts of the world and make a positive impact on society. I could use my creativity and technical skills to create digital products that can have a meaningful impact on people's lives. \n \n     I have been working on my own projects, experimenting with various technologies and tools, and constantly learning new skills to improve my craft. However, I am now eager to take my passion and skills to the next level by joining a team of like-minded individuals who share my vision and values. \n \nI am excited about the opportunity to contribute my unique perspective, ideas, and creativity to your team. I believe that my passion, curiosity, and willingness to learn would make me a valuable addition to your company, and I am eager to take on new challenges and grow professionally.\n \nThank you for considering my application. I look forward to the opportunity to discuss my qualifications and learn more about your company and the role.\n \nSincerely,\n \nHossam` ;
                             await wait(1)
                             }
                             break;
+                        case 'cv':
+                            var cover = newDoc.querySelector('textarea');
+                            if(cover){
+                            cover.value = `Dear Hiring Manager, \n \nAs someone deeply passionate about creating digital experiences that make a difference in people's lives. \n \nMy journey started as a personal interest that quickly became a calling. I have always been fascinated by the ability of technology to connect people from different parts of the world and make a positive impact on society. I could use my creativity and technical skills to create digital products that can have a meaningful impact on people's lives. \n \n     I have been working on my own projects, experimenting with various technologies and tools, and constantly learning new skills to improve my craft. However, I am now eager to take my passion and skills to the next level by joining a team of like-minded individuals who share my vision and values. \n \nI am excited about the opportunity to contribute my unique perspective, ideas, and creativity to your team. I believe that my passion, curiosity, and willingness to learn would make me a valuable addition to your company, and I am eager to take on new challenges and grow professionally.\n \nThank you for considering my application. I look forward to the opportunity to discuss my qualifications and learn more about your company and the role.\n \nSincerely,\n \nHossam` ;
+                            await wait(1)
+                            }
+                            break;
+                            case 'currículum':
+                                var cover = newDoc.querySelector('textarea');
+                                if(cover){
+                                cover.value = `Dear Hiring Manager, \n \nAs someone deeply passionate about creating digital experiences that make a difference in people's lives. \n \nMy journey started as a personal interest that quickly became a calling. I have always been fascinated by the ability of technology to connect people from different parts of the world and make a positive impact on society. I could use my creativity and technical skills to create digital products that can have a meaningful impact on people's lives. \n \n     I have been working on my own projects, experimenting with various technologies and tools, and constantly learning new skills to improve my craft. However, I am now eager to take my passion and skills to the next level by joining a team of like-minded individuals who share my vision and values. \n \nI am excited about the opportunity to contribute my unique perspective, ideas, and creativity to your team. I believe that my passion, curiosity, and willingness to learn would make me a valuable addition to your company, and I am eager to take on new challenges and grow professionally.\n \nThank you for considering my application. I look forward to the opportunity to discuss my qualifications and learn more about your company and the role.\n \nSincerely,\n \nHossam` ;
+                                await wait(1)
+                                }
+                                break;
+                                case 'curriculum':
+                                    var cover = newDoc.querySelector('textarea');
+                                    if(cover){
+                                    cover.value = `Dear Hiring Manager, \n \nAs someone deeply passionate about creating digital experiences that make a difference in people's lives. \n \nMy journey started as a personal interest that quickly became a calling. I have always been fascinated by the ability of technology to connect people from different parts of the world and make a positive impact on society. I could use my creativity and technical skills to create digital products that can have a meaningful impact on people's lives. \n \n     I have been working on my own projects, experimenting with various technologies and tools, and constantly learning new skills to improve my craft. However, I am now eager to take my passion and skills to the next level by joining a team of like-minded individuals who share my vision and values. \n \nI am excited about the opportunity to contribute my unique perspective, ideas, and creativity to your team. I believe that my passion, curiosity, and willingness to learn would make me a valuable addition to your company, and I am eager to take on new challenges and grow professionally.\n \nThank you for considering my application. I look forward to the opportunity to discuss my qualifications and learn more about your company and the role.\n \nSincerely,\n \nHossam` ;
+                                    await wait(1)
+                                    }
+                                    break;
                         case 'work experience':
                             // let workElements = newDoc.querySelectorAll('input,select,textarea');
                             // if(workElements.length){
@@ -194,7 +222,7 @@ let jobLinks = fishes('[class="disabled ember-view job-card-container__link job-
                                         if(options.length > 3){
                                          let chan = new Event("change");
                                          await wait(.8)
-                                         sel.value = options[2].value;
+                                         sel.value = options[options.length-2].value;
                                          await wait(.7);
                                          sel.dispatchEvent(chan)
                                         }
@@ -312,4 +340,14 @@ let jobLinks = fishes('[class="disabled ember-view job-card-container__link job-
         
     
         }
-    }
+    } ;
+    let activePageLI = fish('.artdeco-pagination__indicator artdeco-pagination__indicator--number active selected ember-view'.split(' ').join('.'));
+    let nextPageLi = fish('#ember'+(Number(activePageLI.id.slice(5))+1))
+    fish('#ember'+(Number(activePageLI.id.slice(5))+1)).firstElementChild.click()
+    // and wait 3 seconds
+    await wait(4);
+    location.reload()
+
+    
+}
+jam()

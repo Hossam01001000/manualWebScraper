@@ -10,7 +10,10 @@ let fishes = (arg)=>{
 let ul = fish('.artdeco-pagination__pages artdeco-pagination__pages--number'.split(' ').join('.'))
 let pagesNum = Number(ul.lastElementChild.getAttribute('data-test-pagination-page-btn'))
 for(let i=0; i<pagesNum;i++){
+    
 
+    location.reload();
+    await wait(8);
     // code goes here before advancing to the next page
     function scrollTo(element, to, duration) {
         const start = element.scrollTop;
@@ -37,12 +40,13 @@ for(let i=0; i<pagesNum;i++){
         };
       
         requestAnimationFrame(animateScroll);
-      }
+    }
     
-    let element = fish('[class="scaffold-layout__list"]').children[1]
+    let element = fish('[class="scaffold-layout__list"]').children[1];
     
     let elementHeight = element.scrollHeight - element.clientHeight
-    
+    scrollTo(element , 0 , 3000);
+    await wait(4)
     scrollTo(element, elementHeight, 5000);
     await wait(7)
     let jobLinks = fishes('[class="disabled ember-view job-card-container__link job-card-list__title"]')
@@ -129,6 +133,20 @@ for(let i=0; i<pagesNum;i++){
                             await wait(1)
                             }
                             break;
+                            case 'currículum':
+                                var cover = newDoc.querySelector('textarea');
+                                if(cover){
+                                cover.value = `Dear Hiring Manager, \n \nAs someone deeply passionate about creating digital experiences that make a difference in people's lives. \n \nMy journey started as a personal interest that quickly became a calling. I have always been fascinated by the ability of technology to connect people from different parts of the world and make a positive impact on society. I could use my creativity and technical skills to create digital products that can have a meaningful impact on people's lives. \n \n     I have been working on my own projects, experimenting with various technologies and tools, and constantly learning new skills to improve my craft. However, I am now eager to take my passion and skills to the next level by joining a team of like-minded individuals who share my vision and values. \n \nI am excited about the opportunity to contribute my unique perspective, ideas, and creativity to your team. I believe that my passion, curiosity, and willingness to learn would make me a valuable addition to your company, and I am eager to take on new challenges and grow professionally.\n \nThank you for considering my application. I look forward to the opportunity to discuss my qualifications and learn more about your company and the role.\n \nSincerely,\n \nHossam` ;
+                                await wait(1)
+                                }
+                                break;
+                                case 'curriculum':
+                                    var cover = newDoc.querySelector('textarea');
+                                    if(cover){
+                                    cover.value = `Dear Hiring Manager, \n \nAs someone deeply passionate about creating digital experiences that make a difference in people's lives. \n \nMy journey started as a personal interest that quickly became a calling. I have always been fascinated by the ability of technology to connect people from different parts of the world and make a positive impact on society. I could use my creativity and technical skills to create digital products that can have a meaningful impact on people's lives. \n \n     I have been working on my own projects, experimenting with various technologies and tools, and constantly learning new skills to improve my craft. However, I am now eager to take my passion and skills to the next level by joining a team of like-minded individuals who share my vision and values. \n \nI am excited about the opportunity to contribute my unique perspective, ideas, and creativity to your team. I believe that my passion, curiosity, and willingness to learn would make me a valuable addition to your company, and I am eager to take on new challenges and grow professionally.\n \nThank you for considering my application. I look forward to the opportunity to discuss my qualifications and learn more about your company and the role.\n \nSincerely,\n \nHossam` ;
+                                    await wait(1)
+                                    }
+                                    break;
                         case 'work experience':
                             // let workElements = newDoc.querySelectorAll('input,select,textarea');
                             // if(workElements.length){
