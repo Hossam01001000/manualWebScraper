@@ -1,4 +1,4 @@
-let apply = async()=>{
+(async()=>{
 let wait=(delay)=>new Promise(resolve=>setTimeout(()=>resolve(),delay*1000))
 let fish=(arg)=>{
     return document.querySelector(arg)
@@ -12,8 +12,7 @@ let pagesNum = Number(ul.lastElementChild.getAttribute('data-test-pagination-pag
 for(let i=0; i<pagesNum;i++){
     
 
-    location.reload();
-    await wait(8);
+   
     // code goes here before advancing to the next page
     function scrollTo(element, to, duration) {
         const start = element.scrollTop;
@@ -42,7 +41,7 @@ for(let i=0; i<pagesNum;i++){
         requestAnimationFrame(animateScroll);
     }
     
-    let element = fish('[class="scaffold-layout__list"]').children[1];
+    let element = fish(".scaffold-layout__list").children[1];
     
     let elementHeight = element.scrollHeight - element.clientHeight
     scrollTo(element , 0 , 3000);
@@ -358,6 +357,4 @@ for(let i=0; i<pagesNum;i++){
     // and wait 3 seconds
     await wait(3)
 }
-}
-
-apply()
+})()

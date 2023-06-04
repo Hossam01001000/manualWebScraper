@@ -33,7 +33,7 @@ let jam = async()=>{
       
         requestAnimationFrame(animateScroll);
     }
-    let element = fish('[class="scaffold-layout__list"]').children[1];
+    let element = fish('.scaffold-layout__list').children[1];
     
     let elementHeight = element.scrollHeight - element.clientHeight
     scrollTo(element , 0 , 3000);
